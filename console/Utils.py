@@ -4,7 +4,9 @@ import os
 import shutil
 import subprocess
 import sys
+import matplotlib.pyplot as plt
 from distutils import dir_util
+from datetime import datetime
 
 
 # Copy each file or all files recursively from a folder
@@ -72,3 +74,18 @@ def divide_chunks(source_list, chunk_size):
     # looping till end of list
     for index in range(0, len(source_list), chunk_size):
         yield source_list[index:index + chunk_size]
+
+
+def get_date_from_string(date_string):
+    return datetime.strptime(date_string, '%Y-%m-%d')
+
+
+def get_month_year_from_string(date_string):
+    return datetime.strptime(date_string, '%Y-%m')
+
+
+def plot_graph(plot_type, data):
+    plt.style.use('fivethirtyeight' if plot_type is None else str(plot_type))
+    data['Close'].plot()
+    plt.show()
+
